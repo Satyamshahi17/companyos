@@ -14,7 +14,6 @@ pinned: false
 
 **CompanyOS** is an OpenEnv-compliant reinforcement learning environment where agents learn to complete multi-step enterprise workflows across three interconnected, partially observable mock applications — TicketDesk, DataHub, and ApprovalFlow.
 
-Built for the **Meta PyTorch OpenEnv Hackathon 2026** | Theme: World Modeling — Professional Tasks
 
 [![OpenEnv](https://img.shields.io/badge/OpenEnv-compliant-green)](https://github.com/meta-pytorch/OpenEnv)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-orange)](https://fastapi.tiangolo.com)
