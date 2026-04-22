@@ -118,3 +118,7 @@ def manifest() -> dict[str, Any]:
             "params": "dict of keyword arguments",
         },
     }
+
+@app.get("/")
+def root():
+    return {"message": "CompanyOS is live!", "docs": "/docs", "health": "/health"}
