@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from openenv.core.env_client import EnvClient
 
-from companyos.models import CompanyAction, CompanyObservation, CompanyState
+from models import CompanyAction, CompanyObservation, CompanyState
 
 
 class CompanyOSEnv(EnvClient[CompanyAction, CompanyObservation, CompanyState]):

@@ -1,11 +1,11 @@
-# """CompanyOS — OpenEnv-compliant RL environment."""
+"""CompanyOS — OpenEnv-compliant RL environment."""
 
-# from companyos.models import CompanyAction, CompanyObservation, CompanyState
-# from companyos.client import CompanyOSEnv
+from models import CompanyAction, CompanyObservation, CompanyState
+from client import CompanyOSEnv
 
-# __all__ = [
-#     "CompanyAction",
-#     "CompanyObservation",
-#     "CompanyState",
-#     "CompanyOSEnv",
-# ]
+__all__ = [
+    "CompanyAction",
+    "CompanyObservation",
+    "CompanyState",
+    "CompanyOSEnv",
+]
