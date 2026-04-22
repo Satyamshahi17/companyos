@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Enterprise Workflow RL Environment — OpenEnv compliant"
 requires-python = ">=3.11"
 dependencies = [
-    "openenv",
+    "openenv>=0.2.0",
     "fastapi>=0.111",
     "uvicorn[standard]>=0.29",
     "pydantic>=2.0",
