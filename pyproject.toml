@@ -8,11 +8,12 @@ version = "0.1.0"
 description = "Enterprise Workflow RL Environment — OpenEnv compliant"
 requires-python = ">=3.11"
 dependencies = [
-    "openenv>=0.2.0",
-    "fastapi>=0.111",
-    "uvicorn[standard]>=0.29",
-    "pydantic>=2.0",
-    "numpy>=1.26",
+    "openenv-core>=0.2.0",
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.29.0",
+    "numpy>=1.26.0",
+    "pydantic>=2.6.0",
+    "requests>=2.31.0",
 ]
 
 [project.optional-dependencies]
