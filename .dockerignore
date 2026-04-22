@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+.git
+.env
+*.egg-info
+dist
+build
+outputs/
+training/
+.ruff_cache

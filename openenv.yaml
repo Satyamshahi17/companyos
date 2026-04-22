@@ -1,0 +1,22 @@
+# OpenEnv environment manifest
+name: companyos
+version: 0.1.0
+description: >
+  RL environment simulating a tiny company operating system
+  (TicketDesk · DataHub · ApprovalFlow).  Train LLM agents to
+  navigate tickets, datasets, and approval workflows.
+
+# Server configuration
+server:
+  module: companyos.server.main:app
+  host: 0.0.0.0
+  port: 7860
+
+# Concurrency
+supports_concurrent_sessions: true
+max_concurrent_envs: 64
+
+# HF Spaces metadata
+huggingface:
+  sdk: docker
+  app_port: 7860

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "companyos"
+version = "0.1.0"
+description = "Enterprise Workflow RL Environment — OpenEnv compliant"
+requires-python = ">=3.11"
+dependencies = [
+    "openenv",
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.29",
+    "pydantic>=2.0",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+train = [
+    "trl>=0.8",
+    "unsloth",
+    "torch>=2.2",
+    "transformers>=4.40",
+    "datasets>=2.18",
+    "wandb",
+    "matplotlib",
+]
+dev = [
+    "pytest",
+    "httpx",   # for FastAPI test client
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["apps*", "env*", "server*"]

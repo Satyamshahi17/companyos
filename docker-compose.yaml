@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  companyos:
+    build: .
+    ports:
+      - "7860:7860"
+    environment:
+      - ENV_NOISE_PROB=0.1
+      - ENV_SEED=42
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7860/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
