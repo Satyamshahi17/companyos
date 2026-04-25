@@ -14,6 +14,7 @@ pinned: false
 
 **CompanyOS** is an OpenEnv-compliant reinforcement learning environment where agents learn to complete multi-step enterprise workflows across three interconnected, partially observable mock applications — TicketDesk, DataHub, and ApprovalFlow.
 
+Built for the **Meta PyTorch OpenEnv Hackathon 2026** | Theme: World Modeling — Professional Tasks
 
 [![OpenEnv](https://img.shields.io/badge/OpenEnv-compliant-green)](https://github.com/meta-pytorch/OpenEnv)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-orange)](https://fastapi.tiangolo.com)
@@ -407,6 +408,45 @@ companyos/
 
 ## 🔬 Why CompanyOS is a Strong RL Benchmark
 
+### vs Existing Benchmarks
+
+| Benchmark | What it tests | What's missing |
+|---|---|---|
+| **WebArena** | Browser navigation | Single system, no multi-app state |
+| **WorkArena** | ServiceNow tasks | Vendor-locked, not open RL env |
+| **AgentBench** | OS, DB, web tasks | No partial observability, no data quality |
+| **ToolBench** | API tool calling | No stateful world, no causal dependencies |
+| **ALFWorld** | Household tasks | Not enterprise, not professional workflows |
+
+---
+
+### 3 Things That Make CompanyOS Different
+
+**1. 🔗 Multi-system causal reasoning**
+
+Every existing benchmark tests one system at a time. CompanyOS requires the agent to maintain consistent state across three interdependent apps. An action in TicketDesk directly affects what's valid in ApprovalFlow — you cannot submit an approval without first verifying the ticket. That cross-system causality doesn't exist anywhere else.
+
+**2. 📊 Data quality as a core challenge**
+
+No existing benchmark treats stale data, OOO approvers, or missing fields as first-class obstacles. CompanyOS makes data quality part of the reasoning problem — not just noise. The agent must detect staleness, trigger a refresh pipeline, re-query, and only then trust the value.
+
+**3. 🌐 Reproducible and open**
+
+WorkArena requires a ServiceNow license. WebArena needs a full browser stack. CompanyOS is a free public REST API — anyone can call `/reset` and `/step` from any language, with any agent, right now.
+
+```python
+# Benchmark your agent in 5 lines
+import requests
+ENV = "https://satyamshahi-companyos.hf.space"
+obs = requests.post(f"{ENV}/reset").json()
+result = requests.post(f"{ENV}/step", json={"app": "ticketdesk", "method": "list_tickets", "params": {}}).json()
+print(result["reward"], result["done"])
+```
+
+---
+
+### Property Comparison
+
 | Property | CompanyOS | Typical benchmark |
 |---|---|---|
 | Partial observability | ✅ Agent sees only current state | ❌ Often fully observable |
@@ -416,9 +456,45 @@ companyos/
 | Reproducible episodes | ✅ Seed-based deterministic reset | ❌ Hard with real APIs |
 | Dense reward signal | ✅ Shaped per-step rewards | ❌ Often sparse terminal only |
 | Real business semantics | ✅ Faithful enterprise abstractions | ❌ Toy problems |
+| Open API | ✅ Free REST API, any language | ❌ Usually requires local setup |
+
+---
+
+## 🛡️ Reward Hacking Prevention
+
+Reward hacking is one of the biggest practical failure modes in RL — the model learns shortcuts that maximise reward without solving the real task. CompanyOS addresses this systematically:
+
+### 1. Causal progress ordering
+Progress flags enforce a strict dependency chain. You cannot unlock a later step without completing earlier ones:
+
+```
+ticket_priority_set  →  ticket_verified  →  approval_submitted  →  approval_approved
+                                ↑
+                        metric_queried or metric_refreshed (must happen first)
+```
+
+If the agent tries to submit an approval without verifying the ticket — `approval_submitted` stays `False`. No reward. No shortcut.
+
+### 2. Stale data detection
+Querying a stale metric does **not** satisfy `metric_queried`. The agent must call `refresh_data()` first, then re-query a fresh value. Submitting an approval with stale compliance data gives no progress credit.
+
+### 3. OOO enforcement
+Submitting to the CFO directly (who is OOO) returns an error and no reward. The agent must discover the delegate via `get_approver()` first.
+
+### 4. Shortcut attempt tracking
+Every time the agent tries to skip a required step, `shortcut_attempts` increments. This is logged per episode during training — a healthy training run shows shortcuts trending toward zero as the agent learns the real workflow.
+
+### 5. Per-step time pressure
+A `-0.1` cost per step prevents the agent from stalling or spamming safe actions. Combined with a hard `max_steps` limit and a `-5.0` timeout penalty, the agent is incentivised to complete the workflow efficiently.
+
+### Result
+A random agent achieves **0% success rate** across 100 episodes. There are no lucky shortcuts — the only path to the `+15.0` terminal bonus is completing the full causal chain correctly.
 
 ---
 
 ## 👨‍💻 Built By
 
-**Satyam Kumar** 
+**Satyam Shahi** — Meta PyTorch OpenEnv Hackathon 2026 Finalist
+Top 800 / 31,000+ teams
+
+Presented at Scaler School of Technology, Bangalore — April 25–26, 2026

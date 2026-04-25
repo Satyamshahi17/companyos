@@ -113,7 +113,8 @@ class CompanyOSEnv(Env):
         """
         seed = self.seed if self.seed is not None else random.randint(0, 99999)
         random.seed(seed)
-
+        
+        self._shortcut_attempts = 0
         self.ticketdesk.reset(seed=seed)
         self.datahub.reset(seed=seed)
         self.approvalflow.reset(seed=seed)
@@ -205,6 +206,7 @@ class CompanyOSEnv(Env):
             "total_reward": self.total_reward,
             "success": success,
             "timeout": timeout,
+            "shortcut_attempts": getattr(self, "_shortcut_attempts", 0),
         }
 
         return obs, round(reward, 3), self.done, info

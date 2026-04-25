@@ -34,3 +34,8 @@ dev = [
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["apps*", "env*", "server*"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
