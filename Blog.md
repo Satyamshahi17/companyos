@@ -1,6 +1,6 @@
 # 🏢 CompanyOS: Training AI Agents to Navigate Enterprise Chaos
 
-*A fully open, OpenEnv-compliant RL environment for enterprise workflow reasoning — built for the Meta PyTorch OpenEnv Hackathon 2026*
+*A fully open, OpenEnv-compliant RL environment for enterprise workflow reasoning*
 
 ---
 
