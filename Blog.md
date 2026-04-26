@@ -411,7 +411,7 @@ The REST API means any improvement to the environment is immediately available t
 
 - 🤗 **HF Space (live env):** (https://huggingface.co/spaces/satyamshahi/companyos)
 - 💻 **GitHub:** (https://github.com/Satyamshahi17/companyos)
-- 📓 **Training notebook Colab Link:** (https://colab.research.google.com/drive/10xKHKlbzJHnf5AfHik1NK9Wly9OpM1ey?usp=sharing)
+- 📓 **Training notebook Colab Link:** (https://colab.research.google.com/drive/1MJO-1V7hb7QAOEEZuiziLkpO8UIvGigz?usp=sharing)
 
 ---
 
