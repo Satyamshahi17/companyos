@@ -313,6 +313,8 @@ Episodes:     100
 Mean reward:  -1.7
 Success rate: 0.0%
 Best episode: +5.2  (lucky partial completion)
+
+![My Architecture Diagram](baseline_curve.png)
 ```
 
 The smoothed reward line is flat at -1.7 with no upward trend — the random agent never figures out the workflow ordering.
