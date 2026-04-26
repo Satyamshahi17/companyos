@@ -494,7 +494,4 @@ A random agent achieves **0% success rate** across 100 episodes. There are no lu
 
 ## 👨‍💻 Built By
 
-**Satyam Shahi** — Meta PyTorch OpenEnv Hackathon 2026 Finalist
-Top 800 / 31,000+ teams
-
-Presented at Scaler School of Technology, Bangalore — April 25–26, 2026
+**Satyam Kumar** 
