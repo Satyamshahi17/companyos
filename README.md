@@ -313,25 +313,7 @@ CompanyOS uses **shaped rewards** to provide a dense learning signal throughout 
 
 ## 📈 Training Results
 
-### Random Baseline (untrained agent):
-```
-Mean reward:   -2.04
-Success rate:   2.0%
-Best episode: +21.50  (lucky random sequence)
-```
-
-### After GRPO Training (Unsloth + HF TRL):
-```
-Mean reward:  ~+12–18   (converges after ~150 episodes)
-Success rate:  ~60–75%
-```
-
-The reward curve shows clear learning progression:
-1. **Phase 1** — Agent stops making invalid tool calls (reward stabilises above -5)
-2. **Phase 2** — Agent learns correct app routing for each subtask
-3. **Phase 3** — Agent learns full workflow order including stale data and OOO routing
-
----
+Designed shaped reward system with causal dependency enforcement; random agent baseline scored −2.04 mean reward with 2% success rate across 100 episodes
 
 ## 🚀 API Reference
 
